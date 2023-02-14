@@ -1,14 +1,10 @@
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach((entry) => {
-    console.log(entry);
-    if (entry.isIntersecting) {
-      console.log(entry);
-      entry.target.classList.add("show");
-    } else {
-      entry.target.classList.remove("show");
-    }
-  });
-});
-
-const hiddenElement = document.querySelectorAll(".hidden");
-hiddenElement.forEach((el) => observer.observe(el));
+var prevScrollpos = window.pageYOffset;
+window.onscroll = function () {
+  var currentScrollPos = window.pageYOffset;
+  if (prevScrollpos > currentScrollPos) {
+    document.getElementById("navbar").style.top = "0";
+  } else {
+    document.getElementById("navbar").style.top = "-100px";
+  }
+  prevScrollpos = currentScrollPos;
+};
